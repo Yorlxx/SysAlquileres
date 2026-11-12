@@ -1,0 +1,137 @@
+/* ============================================================
+   SISTEMA DE GESTIÓN DE ALQUILERES
+   Estilo sencillo, similar a un proyecto académico de JavaFX:
+   controles por defecto, fondo claro y algunos detalles de color.
+   ============================================================ */
+
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 12px;
+    -fx-background-color: #f0f0f0;
+}
+
+.label {
+    -fx-text-fill: #333333;
+}
+
+/* ---------------- LOGIN ---------------- */
+.login-fondo {
+    -fx-background-color: #aecdf3;
+}
+
+.login-titulo {
+    -fx-text-fill: #1e3a8a;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.login-pista {
+    -fx-text-fill: #1e3a8a;
+    -fx-font-size: 11px;
+}
+
+/* ---------------- MÓDULOS ---------------- */
+.modulo {
+    -fx-padding: 12;
+    -fx-background-color: white;
+}
+
+.titulo-modulo {
+    -fx-text-fill: #238ad3;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.campo-etiqueta {
+    -fx-text-fill: #333333;
+}
+
+.texto-ayuda {
+    -fx-text-fill: #666666;
+    -fx-font-size: 11px;
+}
+
+.texto-conteo {
+    -fx-text-fill: #666666;
+    -fx-font-size: 11px;
+}
+
+.error {
+    -fx-text-fill: #c62828;
+    -fx-font-size: 11px;
+}
+
+.exito {
+    -fx-text-fill: #2e7d32;
+    -fx-font-size: 11px;
+}
+
+/* ---------------- BOTONES ---------------- */
+.boton-primario {
+    -fx-background-color: #1976d2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 14 5 14;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+}
+
+.boton-primario:hover {
+    -fx-background-color: #1565c0;
+}
+
+.boton-secundario {
+    -fx-background-color: #f4f4f4;
+    -fx-text-fill: #333333;
+    -fx-padding: 5 14 5 14;
+    -fx-background-radius: 3;
+    -fx-border-color: #bdbdbd;
+    -fx-border-radius: 3;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+.boton-secundario:hover {
+    -fx-background-color: #e8e8e8;
+}
+
+.boton-peligro {
+    -fx-background-color: #d32f2f;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 14 5 14;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+}
+
+.boton-peligro:hover {
+    -fx-background-color: #b71c1c;
+}
+
+.boton-exito {
+    -fx-background-color: #388e3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 14 5 14;
+    -fx-background-radius: 3;
+    -fx-cursor: hand;
+}
+
+.boton-exito:hover {
+    -fx-background-color: #2e7d32;
+}
+
+/* ---------------- DIÁLOGOS ---------------- */
+.app-dialog {
+    -fx-background-color: white;
+}
+
+.app-dialog .header-panel {
+    -fx-background-color: #e3f2fd;
+}
+
+.app-dialog .header-panel .label {
+    -fx-text-fill: #1565c0;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

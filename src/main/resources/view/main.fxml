@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.alquileres.controller.MainController"
+            prefWidth="1100.0" prefHeight="700.0">
+
+    <top>
+        <MenuBar>
+            <menus>
+                <Menu text="Archivo">
+                    <items>
+                        <MenuItem text="Cerrar sesión" onAction="#onCerrarSesion"/>
+                        <MenuItem text="Salir" onAction="#onSalir"/>
+                    </items>
+                </Menu>
+                <Menu text="Módulos">
+                    <items>
+                        <MenuItem text="Departamentos" onAction="#irDepartamentos"/>
+                        <MenuItem text="Inquilinos" onAction="#irInquilinos"/>
+                        <MenuItem text="Contratos" onAction="#irContratos"/>
+                        <MenuItem text="Pagos" onAction="#irPagos"/>
+                    </items>
+                </Menu>
+                <Menu text="Ayuda">
+                    <items>
+                        <MenuItem text="Acerca de" onAction="#onAcercaDe"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE"/>
+    </center>
+</BorderPane>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de exposición — SysAlquileres</title>
+<style>
+    :root { --azul: #1565c0; --azul-oscuro: #0d47a1; --borde: #cfd8dc; }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        padding: 28px 18px 60px;
+        font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #222;
+        background: #f4f6f8;
+    }
+    main {
+        max-width: 900px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px 48px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 6px;
+    }
+    h1 { color: var(--azul); font-size: 30px; border-bottom: 3px solid var(--azul); padding-bottom: 8px; margin-top: 0; }
+    h2 { color: var(--azul); font-size: 22px; margin-top: 34px; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px; page-break-after: avoid; }
+    h3 { color: var(--azul-oscuro); font-size: 17px; margin-top: 24px; page-break-after: avoid; }
+    p { margin: 8px 0; }
+    ul, ol { margin: 8px 0 12px 24px; padding: 0; }
+    li { margin: 4px 0; }
+    code {
+        background: #eef2f7;
+        color: #b71c1c;
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 0.92em;
+    }
+    pre {
+        background: #f6f8fa;
+        border: 1px solid #d0d7de;
+        border-left: 4px solid var(--azul);
+        border-radius: 4px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        page-break-inside: avoid;
+    }
+    pre code { background: transparent; color: #263238; padding: 0; font-size: 0.9em; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; page-break-inside: avoid; }
+    th { background: #e3f2fd; color: var(--azul-oscuro); text-align: left; }
+    th, td { border: 1px solid var(--borde); padding: 6px 9px; vertical-align: top; }
+    tr:nth-child(even) td { background: #fafbfc; }
+    blockquote {
+        margin: 14px 0;
+        padding: 10px 16px;
+        background: #f1f8ff;
+        border-left: 4px solid #64b5f6;
+        color: #37474f;
+    }
+    blockquote p { margin: 0; }
+    img { max-width: 100%; border: 1px solid var(--borde); border-radius: 4px; margin: 10px 0; page-break-inside: avoid; }
+    hr { border: none; border-top: 1px solid #e0e0e0; margin: 26px 0; }
+    a { color: var(--azul); }
+    .barra {
+        max-width: 900px;
+        margin: 0 auto 12px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .barra button {
+        background: var(--azul);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .barra button:hover { background: var(--azul-oscuro); }
+    @media print {
+        body { background: white; padding: 0; font-size: 11pt; }
+        main { max-width: none; padding: 0; box-shadow: none; border-radius: 0; }
+        .barra { display: none; }
+        h1 { font-size: 22pt; }
+        h2 { font-size: 15pt; }
+        h3 { font-size: 12.5pt; }
+        a { color: inherit; text-decoration: none; }
+        pre, table, blockquote, img { page-break-inside: avoid; }
+    }
+    @page { size: A4; margin: 18mm; }
+</style>
+</head>
+<body>
+<div class="barra"><button onclick="window.print()">Imprimir / Guardar PDF</button></div>
+<main>
+<h1>Guía de exposición y estudio — SysAlquileres</h1>
+<blockquote><p><strong>Cómo usar esta guía:</strong> lee las secciones 1 a 4 para entender el sistema, la 5 para conocer el código, la 8 para practicar la exposición y la 9 para prepararte para las preguntas del profesor. No necesitas memorizar todo: concéntrate en explicar el flujo y las reglas de negocio con tus propias palabras.</p></blockquote>
+<hr>
+<h2>1. ¿Qué es SysAlquileres?</h2>
+<p>SysAlquileres es una aplicación de escritorio para administrar el alquiler de departamentos. Permite guardar departamentos, inquilinos, contratos y pagos, y aplica reglas de negocio para que la información no se contradiga.</p>
+<p><strong>Problema que resuelve:</strong> llevar estos datos en cuadernos u hojas de cálculo provoca errores: un departamento alquilado dos veces, pagos sin contrato, inquilinos duplicados o contratos con fechas incorrectas. El sistema centraliza la información y valida esas situaciones.</p>
+<p><strong>Módulos:</strong></p>
+<table><thead><tr>
+<th>Módulo</th>
+<th>Para qué sirve</th>
+</tr></thead><tbody>
+<tr>
+<td>Login</td>
+<td>Identifica al usuario antes de entrar</td>
+</tr>
+<tr>
+<td>Departamentos</td>
+<td>Registra número, piso, dirección, precio y estado</td>
+</tr>
+<tr>
+<td>Inquilinos</td>
+<td>Registra personas naturales o empresas</td>
+</tr>
+<tr>
+<td>Contratos</td>
+<td>Relaciona un inquilino con un departamento y unas fechas</td>
+</tr>
+<tr>
+<td>Pagos</td>
+<td>Registra los pagos mensuales de cada contrato</td>
+</tr>
+</tbody></table>
+<p><strong>Tecnologías:</strong> Java 21, JavaFX 21, FXML, Maven, H2 (base embebida por defecto), PostgreSQL (opcional), JDBC con HikariCP, Jakarta Validation y Lombok.</p>
+<p><strong>Credenciales de prueba:</strong> usuario <code>admin</code>, clave <code>admin123</code>.</p>
+<p>!<a href="screenshots/login.png">Login</a></p>
+<p>!<a href="screenshots/principal.png">Ventana principal</a></p>
+<hr>
+<h2>2. Cómo ejecutar el sistema</h2>
+<p><strong>Requisitos:</strong> JDK 21 y Maven 3.9 o superior.</p>
+<pre><code class="language-powershell">cd "D:\CRUD DEPARTAMENTOS\SysAlquileres"
+mvn.cmd -B javafx:run</code></pre>
+<p>La primera vez se crea la carpeta <code>data/</code> con la base H2, se ejecuta <code>schema.sql</code> y se cargan los datos de <code>seed.sql</code>.</p>
+<p><strong>Para reiniciar la base de datos:</strong> cierra la aplicación, elimina la carpeta <code>data/</code> y vuelve a ejecutar. Se crea de nuevo con los datos de ejemplo y el usuario <code>admin</code>.</p>
+<p><strong>Si actualizaste desde una versión anterior:</strong> elimina <code>data/</code> una vez, porque una base ya creada no recibe automáticamente la tabla <code>usuario</code>.</p>
+<hr>
+<h2>3. Estructura del proyecto</h2>
+<pre><code class="language-text">SysAlquileres/
+├── database/
+│   └── postgresql_sistema_alquileres.sql   Script completo para PostgreSQL
+├── docs/
+│   ├── GUIA_EXPOSICION.md                  Esta guía
+│   ├── GUIA_EXPOSICION.html                Versión imprimible
+│   └── screenshots/                        Capturas del sistema
+├── src/main/java/pe/edu/upeu/alquileres/
+│   ├── App.java                            Inicio: login y ventana principal
+│   ├── components/Dialogos.java            Confirmaciones y avisos
+│   ├── config/AppContext.java              Crea y conecta objetos
+│   ├── config/DatabaseConfig.java          Conexión, esquema y seed
+│   ├── controller/                         Controladores de las vistas
+│   ├── enums/                              Estados y métodos de pago
+│   ├── exception/BusinessException.java    Errores de negocio
+│   ├── model/                              Clases de datos
+│   ├── repository/                         Acceso a la base de datos
+│   ├── service/                            Reglas de negocio
+│   └── util/                               Formato, Sesion, Validador
+├── src/main/resources/
+│   ├── application.properties              Configuración de la base
+│   ├── schema.sql                          Creación de tablas
+│   ├── seed.sql                            Datos de ejemplo
+│   ├── css/app.css                         Estilos
+│   └── view/                               Archivos FXML
+│       ├── login.fxml
+│       ├── main.fxml
+│       ├── departamentos.fxml
+│       ├── inquilinos.fxml
+│       ├── contratos.fxml
+│       └── pagos.fxml
+└── pom.xml                                 Dependencias y configuración Maven</code></pre>
+<h3>¿Dónde tocar si quieres cambiar algo?</h3>
+<table><thead><tr>
+<th>Quiero cambiar...</th>
+<th>Archivo</th>
+</tr></thead><tbody>
+<tr>
+<td>El aspecto visual</td>
+<td><code>src/main/resources/css/app.css</code></td>
+</tr>
+<tr>
+<td>La distribución de una pantalla</td>
+<td><code>src/main/resources/view/*.fxml</code></td>
+</tr>
+<tr>
+<td>Lo que hace un botón</td>
+<td><code>src/main/java/.../controller/*.java</code></td>
+</tr>
+<tr>
+<td>Una regla de negocio</td>
+<td><code>src/main/java/.../service/impl/*.java</code></td>
+</tr>
+<tr>
+<td>Una consulta SQL</td>
+<td><code>src/main/java/.../repository/*.java</code></td>
+</tr>
+<tr>
+<td>Un campo de una tabla</td>
+<td><code>src/main/resources/schema.sql</code> y el modelo</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>4. Arquitectura por capas</h2>
+<p>El proyecto está dividido en capas. Cada capa tiene una responsabilidad y se comunica con la siguiente:</p>
+<pre><code class="language-text">FXML (pantalla)
+   ↓
+Controller (recibe los clics)
+   ↓
+Service (valida las reglas de negocio)
+   ↓
+Repository (ejecuta SQL)
+   ↓
+Base de datos (H2 o PostgreSQL)</code></pre>
+<table><thead><tr>
+<th>Capa</th>
+<th>Responsabilidad</th>
+<th>Ejemplo</th>
+</tr></thead><tbody>
+<tr>
+<td>Vista (FXML)</td>
+<td>Muestra controles y define su distribución</td>
+<td><code>departamentos.fxml</code></td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>Escucha botones, lee campos y actualiza la tabla</td>
+<td><code>DepartamentoController</code></td>
+</tr>
+<tr>
+<td>Service</td>
+<td>Valida y aplica reglas antes de guardar</td>
+<td><code>DepartamentoServiceImp</code></td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>Traduce objetos a SQL</td>
+<td><code>DepartamentoRepository</code></td>
+</tr>
+<tr>
+<td>Model</td>
+<td>Representa los datos</td>
+<td><code>Departamento</code>, <code>Contrato</code></td>
+</tr>
+<tr>
+<td>Config / Util</td>
+<td>Conexión, dependencias y ayudas</td>
+<td><code>AppContext</code>, <code>Formato</code></td>
+</tr>
+</tbody></table>
+<p><strong>¿Por qué separar así?</strong> Porque si mañana cambia la base de datos, solo se modifica el repository. Si cambia una regla, solo el service. Si cambia la pantalla, solo el FXML y el controller. Además, el código es más fácil de leer y de probar.</p>
+<p>Es normal que este proyecto tenga más archivos que un ejemplo de una sola clase: cada archivo tiene una tarea concreta. En la exposición puedes explicarlo así: “separé el proyecto en capas para que cada clase tenga una sola responsabilidad”.</p>
+<h3>Flujo completo al guardar un departamento</h3>
+<ol>
+<li>El usuario llena los campos y presiona <strong>Guardar</strong>.</li>
+<li><code>departamentos.fxml</code> llama al método <code>onGuardar()</code> del <code>DepartamentoController</code>.</li>
+<li>El controller arma un objeto <code>Departamento</code> con los datos de los campos.</li>
+<li>Llama a <code>departamentoService.save(departamento)</code>.</li>
+<li>El service limpia los textos, valida con Jakarta Validation, comprueba que el número no esté repetido y guarda.</li>
+<li>El repository ejecuta un <code>INSERT</code> con <code>PreparedStatement</code>.</li>
+<li>El controller vuelve a cargar la tabla con <code>cargar()</code> y limpia el formulario.</li>
+</ol>
+<hr>
+<h2>5. Recorrido del código</h2>
+<h3>5.1 App.java — el punto de entrada</h3>
+<p><code>App</code> es la clase que arranca el programa. Tiene el método <code>main</code>, que llama a <code>Application.launch(...)</code> para iniciar JavaFX.</p>
+<p>La ventana JavaFX está en una clase interna llamada <code>Ventana</code>, que sí extiende <code>Application</code>:</p>
+<pre><code class="language-java">public class App {
+
+    public static class Ventana extends Application {
+        @Override
+        public void start(Stage stage) {
+            ventana = stage;
+            AppContext.getInstance();
+            mostrarLogin();
+        }
+
+        @Override
+        public void stop() {
+            DatabaseConfig.shutdown();
+        }
+    }
+
+    public static void main(String[] args) {
+        Application.launch(Ventana.class, args);
+    }
+}</code></pre>
+<p>**¿Por qué <code>App</code> no extiende <code>Application</code> directamente?<strong> Porque Java bloquea el arranque desde el botón </strong>Run** del IDE con el error <em>"JavaFX runtime components are missing"</em>. Al dejar el <code>main</code> en una clase normal y poner la ventana en una clase interna, el botón verde funciona sin configurar nada. También existe <code>SysAlquileres.java</code>, un lanzador que solo llama a <code>App.main(args)</code>.</p>
+<ul>
+<li><code>AppContext.getInstance()</code> crea una sola vez los repositorios, servicios y controladores.</li>
+<li><code>mostrarLogin()</code> carga <code>login.fxml</code>.</li>
+<li><code>mostrarPrincipal()</code> carga <code>main.fxml</code> después de un login correcto.</li>
+<li><code>cargar(...)</code> crea la escena, aplica <code>app.css</code> y muestra la ventana.</li>
+<li><code>stop()</code> cierra el pool de conexiones cuando se cierra la aplicación.</li>
+</ul>
+<h3>5.2 Login</h3>
+<p>La pantalla <code>login.fxml</code> tiene dos campos (<code>txtUsuario</code>, <code>txtClave</code>), un botón <strong>Ingresar</strong>, un botón <strong>Cerrar</strong> y una etiqueta para el error.</p>
+<p>El botón está conectado con <code>onAction="#onIngresar"</code>. Eso significa: “cuando hagan clic, ejecuta el método <code>onIngresar</code> del controlador”.</p>
+<pre><code class="language-java">@FXML
+private void onIngresar() {
+    lblError.setText("");
+    try {
+        Optional&lt;Usuario&gt; usuario = service.login(txtUsuario.getText(), txtClave.getText());
+        if (usuario.isEmpty()) {
+            lblError.setText("Usuario o clave incorrectos.");
+            txtClave.clear();
+            txtClave.requestFocus();
+            return;
+        }
+        Sesion.iniciar(usuario.get());
+        App.mostrarPrincipal();
+    } catch (BusinessException e) {
+        lblError.setText(e.getMessage());
+    }
+}</code></pre>
+<p>Flujo del login:</p>
+<ol>
+<li>El controller llama a <code>IUsuarioService.login(usuario, clave)</code>.</li>
+<li>El servicio valida que los campos no estén vacíos.</li>
+<li><code>UsuarioRepository</code> ejecuta:</li>
+</ol>
+<pre><code class="language-sql">   SELECT * FROM usuario
+   WHERE usuario = ? AND clave = ? AND estado = 'Activo'</code></pre>
+<ol start="4">
+<li>Si hay coincidencia, devuelve un <code>Optional&lt;Usuario&gt;</code> con el usuario.</li>
+<li><code>Sesion.iniciar(...)</code> guarda el usuario en memoria.</li>
+<li><code>App.mostrarPrincipal()</code> abre la ventana principal.</li>
+<li>Si no hay coincidencia, se muestra “Usuario o clave incorrectos”.</li>
+</ol>
+<p><strong>Importante:</strong> la clave está en texto plano porque es un proyecto académico. En un sistema real se guardaría un hash (por ejemplo, BCrypt).</p>
+<h3>5.3 Ventana principal</h3>
+<p><code>main.fxml</code> contiene un <code>MenuBar</code> y un <code>TabPane</code>. El menú tiene <strong>Archivo</strong>, <strong>Módulos</strong> y <strong>Ayuda</strong>.</p>
+<p><code>MainController</code> abre una pestaña nueva solo si aún no existe:</p>
+<pre><code class="language-java">private void abrirTab(String clave) {
+    for (Tab tab : tabPane.getTabs()) {
+        if (clave.equals(tab.getUserData())) {
+            tabPane.getSelectionModel().select(tab);
+            return;
+        }
+    }
+    // si no existe, carga el FXML y crea la pestaña
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + vista.archivo()));
+    loader.setControllerFactory(AppContext.getInstance()::getBean);
+    Parent root = loader.load();
+    Tab tab = new Tab(vista.titulo(), root);
+    tab.setUserData(clave);
+    tabPane.getTabs().add(tab);
+    tabPane.getSelectionModel().select(tab);
+}</code></pre>
+<p><code>setControllerFactory(...)</code> le dice a JavaFX: “cuando el FXML necesite un controlador, pídeselo a <code>AppContext</code>”. Así el controlador recibe sus servicios ya creados.</p>
+<h3>5.4 Un módulo completo: Departamentos</h3>
+<p>La pantalla tiene tres partes:</p>
+<ol>
+<li>Barra superior: título, buscador y filtro por estado.</li>
+<li>Formulario: número, piso, dirección y precio.</li>
+<li>Tabla: número, piso, dirección, precio y estado.</li>
+</ol>
+<p><strong>Columnas de la tabla.</strong> En <code>initialize()</code> se indica de qué propiedad del modelo sale cada columna:</p>
+<pre><code class="language-java">colNumero.setCellValueFactory(new PropertyValueFactory&lt;&gt;("numero"));
+colPiso.setCellValueFactory(new PropertyValueFactory&lt;&gt;("piso"));
+colDireccion.setCellValueFactory(new PropertyValueFactory&lt;&gt;("direccion"));
+colPrecio.setCellValueFactory(new PropertyValueFactory&lt;&gt;("precioMensual"));
+colEstado.setCellValueFactory(new PropertyValueFactory&lt;&gt;("estado"));</code></pre>
+<p><strong>Filtro.</strong> Se usa un <code>FilteredList</code>, que envuelve la lista original y muestra solo los elementos que cumplen una condición:</p>
+<pre><code class="language-java">filtrados = new FilteredList&lt;&gt;(datos, d -&gt; true);
+tblDepartamentos.setItems(filtrados);
+
+txtBuscar.textProperty().addListener((o, anterior, actual) -&gt; aplicarFiltro());</code></pre>
+<p><strong>Guardar o actualizar.</strong> Si <code>idEditando</code> es <code>null</code>, es un registro nuevo; si tiene valor, se está editando la fila seleccionada:</p>
+<pre><code class="language-java">if (idEditando == null) {
+    service.save(departamento);
+} else {
+    service.update(idEditando, departamento);
+}</code></pre>
+<p><strong>Eliminar.</strong> Primero se pide confirmación y luego se llama al service. El service impide eliminar un departamento con contratos:</p>
+<pre><code class="language-java">if (contratoRepository.existsByDepartamento(id)) {
+    throw new BusinessException(
+        "No se puede eliminar el departamento porque tiene contratos registrados.");
+}</code></pre>
+<p><strong>Estados.</strong> Un departamento es <code>Disponible</code> u <code>Ocupado</code>. Al crear un contrato, el service lo marca <code>Ocupado</code>; al finalizar el contrato, vuelve a <code>Disponible</code>.</p>
+<h3>5.5 Inquilinos</h3>
+<p>Un inquilino puede ser <strong>persona natural</strong> o <strong>persona jurídica</strong> (empresa).</p>
+<ul>
+<li>Natural: DNI de 8 dígitos, nombre y apellido.</li>
+<li>Jurídica: además, representante legal, RUC de 10 u 11 dígitos y dirección fiscal.</li>
+</ul>
+<p>El controller muestra los campos legales solo cuando se elige “Jurídica”:</p>
+<pre><code class="language-java">boolean esJuridica = tipo != null &amp;&amp; "Jurídica".equalsIgnoreCase(tipo.getNombre());
+boxLegal.setVisible(esJuridica);
+boxLegal.setManaged(esJuridica);</code></pre>
+<p><code>setManaged(false)</code> hace que el contenedor no ocupe espacio cuando está oculto.</p>
+<p>El service valida que el DNI tenga 8 dígitos y que no esté repetido.</p>
+<h3>5.6 Contratos</h3>
+<p>Un contrato une un inquilino con un departamento durante un periodo. Reglas principales:</p>
+<ul>
+<li>La fecha de fin debe ser posterior a la fecha de inicio.</li>
+<li>Un departamento no puede tener dos contratos vigentes con fechas que se crucen.</li>
+<li>Al crear el contrato, el departamento pasa a <code>Ocupado</code>.</li>
+<li>Al finalizar, se guarda el motivo y el departamento vuelve a <code>Disponible</code>.</li>
+<li>Un contrato finalizado no se puede editar ni eliminar.</li>
+<li>Un contrato con pagos tampoco se puede eliminar.</li>
+</ul>
+<p>La validación de superposición está en <code>ContratoServiceImp</code>:</p>
+<pre><code class="language-java">repository.findVigenteSuperpuesto(
+        idDepartamento, contrato.getFechaInicio(), contrato.getFechaFin(), excluirId)
+    .ifPresent(c -&gt; {
+        throw new BusinessException(
+            "El departamento ya tiene un contrato vigente que se cruza con esas fechas.");
+    });</code></pre>
+<h3>5.7 Pagos</h3>
+<p>Cada pago pertenece a un contrato. Se registra la fecha de pago, el periodo, el monto, el método, el descuento y el IGV.</p>
+<p>El servicio normaliza el periodo al primer día del mes:</p>
+<pre><code class="language-java">if (pago.getPeriodo() != null) {
+    pago.setPeriodo(pago.getPeriodo().withDayOfMonth(1));
+}</code></pre>
+<p>También valida que el descuento y el IGV no sean negativos, y que el monto sea mayor a cero.</p>
+<hr>
+<h2>6. Conceptos de Java y JavaFX usados</h2>
+<h3>Java</h3>
+<ul>
+<li><strong>Clase:</strong> plantilla para crear objetos. Ejemplo: <code>Departamento</code>.</li>
+<li><strong>Objeto:</strong> un departamento concreto en memoria.</li>
+<li><strong>Atributo:</strong> dato de la clase (<code>numero</code>, <code>precioMensual</code>).</li>
+<li><strong>Método:</strong> acción de la clase (<code>save</code>, <code>findAll</code>).</li>
+<li><strong>Constructor:</strong> método que crea el objeto y recibe sus dependencias.</li>
+<li><strong>Encapsulamiento:</strong> los atributos son <code>private</code> y se acceden con getters y setters.</li>
+<li><strong>Herencia:</strong> <code>DepartamentoRepository</code> hereda de <code>AbstractJpaRepository</code>, que ya tiene <code>save</code>, <code>update</code>, <code>delete</code> y <code>findById</code>.</li>
+<li><strong>Interfaz:</strong> define el contrato de un servicio (<code>IDepartamentoService</code>). La implementación (<code>DepartamentoServiceImp</code>) es la que tiene el código.</li>
+<li><strong>Polimorfismo:</strong> el controller usa la interfaz; no necesita saber qué implementación exacta está detrás.</li>
+<li><strong>Enum:</strong> valores fijos. Ejemplo: <code>EstadoDepartamento.DISPONIBLE</code> y <code>OCUPADO</code>.</li>
+<li><strong>Lombok:</strong> genera getters, setters, constructores y el builder con anotaciones como <code>@Data</code> y <code>@Builder</code>.</li>
+<li><strong>BigDecimal:</strong> se usa para dinero porque evita errores de redondeo de <code>double</code>.</li>
+<li><strong>LocalDate:</strong> representa una fecha sin hora (fecha de inicio, fecha de pago).</li>
+<li><strong>Optional:</strong> representa un valor que puede existir o no. Se usa cuando se busca un registro por ID.</li>
+<li><strong>Excepción:</strong> un error controlado. <code>BusinessException</code> lleva un mensaje que se muestra al usuario.</li>
+<li><strong>List:</strong> colección ordenada de elementos.</li>
+<li><strong>Map:</strong> colección de pares clave-valor. Se usa en <code>MainController</code> para relacionar el nombre del módulo con su FXML.</li>
+<li><strong>Record:</strong> clase corta para agrupar datos. <code>Vista(String archivo, String titulo)</code> es un record.</li>
+<li><strong>Lambda:</strong> función corta. Ejemplo: <code>d -&gt; d.getEstado() == EstadoDepartamento.DISPONIBLE</code>.</li>
+<li><strong>Stream:</strong> recorre y filtra colecciones de forma expresiva.</li>
+</ul>
+<h3>JavaFX</h3>
+<ul>
+<li><strong>Stage:</strong> la ventana.</li>
+<li><strong>Scene:</strong> el contenido de la ventana.</li>
+<li><strong>FXML:</strong> archivo XML que describe la pantalla.</li>
+<li><strong>@FXML:</strong> conecta un campo o método de Java con un componente del FXML.</li>
+<li><strong>FXMLLoader:</strong> lee el FXML y crea los objetos.</li>
+<li><strong>Controller factory:</strong> indica cómo crear el controlador y pasarle sus dependencias.</li>
+<li><strong>onAction:</strong> evento que se ejecuta al presionar un botón.</li>
+<li><strong>Listener:</strong> código que reacciona a un cambio, por ejemplo cuando se escribe en el buscador.</li>
+<li><strong>ObservableList:</strong> lista que avisa a la tabla cuando cambia.</li>
+<li><strong>TableView:</strong> componente de tabla.</li>
+<li><strong>PropertyValueFactory:</strong> indica qué propiedad del objeto se muestra en una columna.</li>
+<li><strong>FilteredList:</strong> lista filtrada que se conecta a la tabla.</li>
+<li><strong>styleClass:</strong> clase CSS aplicada a un control.</li>
+<li><strong>CSS:</strong> archivo <code>app.css</code> con colores, tamaños y márgenes.</li>
+</ul>
+<h3>Base de datos y persistencia</h3>
+<ul>
+<li><strong>JDBC:</strong> API de Java para hablar con bases de datos.</li>
+<li><strong>Connection:</strong> conexión abierta.</li>
+<li><strong>PreparedStatement:</strong> consulta con parámetros <code>?</code>. Evita inyección SQL.</li>
+<li><strong>ResultSet:</strong> resultado de una consulta; se recorre fila por fila.</li>
+<li><strong>Transacción:</strong> grupo de operaciones que se confirman juntas con <code>commit()</code> o se deshacen con <code>rollback()</code>.</li>
+<li><strong>HikariCP:</strong> pool que reutiliza conexiones para no abrir una nueva en cada consulta.</li>
+<li><strong>H2:</strong> base de datos embebida, no requiere instalación.</li>
+<li><strong>PostgreSQL:</strong> base de datos cliente-servidor, disponible como opción.</li>
+<li><strong>Jakarta Validation:</strong> anotaciones como <code>@NotBlank</code>, <code>@NotNull</code>, <code>@Size</code> y <code>@Pattern</code> para validar modelos.</li>
+</ul>
+<hr>
+<h2>7. Base de datos</h2>
+<h3>Tablas</h3>
+<table><thead><tr>
+<th>Tabla</th>
+<th>Campos principales</th>
+</tr></thead><tbody>
+<tr>
+<td><code>usuario</code></td>
+<td>usuario, clave, nombre, rol, estado</td>
+</tr>
+<tr>
+<td><code>tipo_personeria</code></td>
+<td>Natural / Jurídica</td>
+</tr>
+<tr>
+<td><code>departamento</code></td>
+<td>numero, piso, direccion, precio_mensual, estado</td>
+</tr>
+<tr>
+<td><code>inquilino</code></td>
+<td>dni, nombre, apellido, teléfono, dirección, tipo, RUC</td>
+</tr>
+<tr>
+<td><code>contrato</code></td>
+<td>fechas, monto, estado, inquilino, departamento</td>
+</tr>
+<tr>
+<td><code>pago</code></td>
+<td>fecha, periodo, monto, método, descuento, IGV, contrato</td>
+</tr>
+<tr>
+<td><code>finalizacion_contrato</code></td>
+<td>contrato, fecha, motivo</td>
+</tr>
+</tbody></table>
+<h3>Relaciones</h3>
+<pre><code class="language-text">departamento 1 ─── N contrato N ─── 1 inquilino
+                      │
+                      1
+                      │
+                      N
+                    pago
+
+usuario (independiente, solo para el login)</code></pre>
+<h3>Esquema y datos iniciales</h3>
+<ul>
+<li><code>schema.sql</code> crea las tablas si no existen.</li>
+<li><code>seed.sql</code> inserta los datos de ejemplo y el usuario <code>admin</code>.</li>
+<li><code>DatabaseConfig.seedIfEmpty()</code> carga el seed solo si la tabla <code>inquilino</code> está vacía.</li>
+</ul>
+<h3>¿H2 o PostgreSQL?</h3>
+<p>Por defecto se usa H2 en modo PostgreSQL para que el proyecto funcione sin instalar nada. El script <code>database/postgresql_sistema_alquileres.sql</code> sirve para ejecutar el mismo sistema con PostgreSQL; solo se cambia <code>application.properties</code>.</p>
+<hr>
+<h2>8. Guion de exposición (10 a 12 minutos)</h2>
+<h3>Antes de empezar</h3>
+<ul>
+<li>Ejecuta el sistema y verifica que el login funcione con <code>admin / admin123</code>.</li>
+<li>Ten datos de ejemplo cargados.</li>
+<li>Abre la carpeta del proyecto en el editor, pero no leas el código durante la demo.</li>
+<li>Ten esta guía a mano por si olvidas un detalle.</li>
+</ul>
+<h3>Minuto 0: saludo y objetivo (30 segundos)</h3>
+<blockquote><p>“Buenos días. Voy a presentar SysAlquileres, un sistema de escritorio para administrar el alquiler de departamentos. Permite registrar departamentos, inquilinos, contratos y pagos, y valida reglas para evitar información contradictoria.”</p></blockquote>
+<h3>Minuto 0:30: problema y solución (1 minuto)</h3>
+<blockquote><p>“Cuando se lleva el alquiler en cuadernos o Excel es fácil alquilar dos veces el mismo departamento o registrar un pago sin contrato. El sistema centraliza los datos y aplica reglas de negocio.”</p></blockquote>
+<p>Muestra la ventana principal y enumera los cuatro módulos.</p>
+<h3>Minuto 1:30: login (1 minuto)</h3>
+<ol>
+<li>Abre el sistema.</li>
+<li>Escribe una clave incorrecta y muestra el mensaje de error.</li>
+<li>Ingresa con <code>admin / admin123</code>.</li>
+<li>Explica: “El login consulta la tabla <code>usuario</code>; si las credenciales son correctas, guarda el usuario en <code>Sesion</code> y abre la ventana principal”.</li>
+</ol>
+<h3>Minuto 2:30: ventana principal (1 minuto)</h3>
+<ul>
+<li>Muestra el menú <strong>Archivo</strong>, <strong>Módulos</strong> y <strong>Ayuda</strong>.</li>
+<li>Abre dos pestañas y explica que se reutilizan.</li>
+<li>Cierra sesión y vuelve a entrar para mostrar el flujo completo.</li>
+</ul>
+<h3>Minuto 3:30: Departamentos (2 minutos)</h3>
+<ol>
+<li>Registra un departamento nuevo.</li>
+<li>Muéstralo en la tabla.</li>
+<li>Selecciónalo, cambia el precio y guarda.</li>
+<li>Usa el buscador y el filtro.</li>
+<li>Intenta eliminar un departamento con contrato y explica por qué el sistema lo impide.</li>
+</ol>
+<h3>Minuto 5:30: Inquilinos (1.5 minutos)</h3>
+<ol>
+<li>Registra una persona natural.</li>
+<li>Muestra que el DNI debe tener 8 dígitos.</li>
+<li>Cambia a persona jurídica y muestra los campos adicionales.</li>
+<li>Explica que el DNI no se puede repetir.</li>
+</ol>
+<h3>Minuto 7: Contratos (2 minutos)</h3>
+<ol>
+<li>Crea un contrato con un inquilino y un departamento disponible.</li>
+<li>Muestra que el departamento pasa a <code>Ocupado</code>.</li>
+<li>Intenta crear otro contrato con fechas cruzadas y muestra el error.</li>
+<li>Finaliza el contrato y muestra que el departamento vuelve a <code>Disponible</code>.</li>
+</ol>
+<h3>Minuto 9: Pagos (1.5 minutos)</h3>
+<ol>
+<li>Registra un pago para un contrato.</li>
+<li>Muestra el periodo, el método y el monto.</li>
+<li>Filtra por método de pago.</li>
+<li>Explica que todo pago debe pertenecer a un contrato.</li>
+</ol>
+<h3>Minuto 10:30: arquitectura (1.5 minutos)</h3>
+<p>Dibuja o muestra este esquema:</p>
+<pre><code class="language-text">FXML → Controller → Service → Repository → Base de datos</code></pre>
+<blockquote><p>“Separé el proyecto en capas: la vista muestra, el controller recibe los eventos, el service valida las reglas y el repository ejecuta el SQL. Así cada clase tiene una responsabilidad.”</p></blockquote>
+<p>Menciona un ejemplo: “Al guardar un departamento, el controller arma el objeto, el service valida el número único y el repository hace el INSERT”.</p>
+<h3>Minuto 12: cierre (30 segundos)</h3>
+<blockquote><p>“El sistema permite administrar los cuatro módulos con validaciones. Lo más importante que aprendí fue separar responsabilidades y aplicar reglas de negocio antes de guardar. Como mejora futura se podría agregar encriptación de contraseñas y reportes.”</p></blockquote>
+<hr>
+<h2>9. Preguntas probables del profesor</h2>
+<p><strong>¿Por qué usaste capas?</strong> Para separar responsabilidades: la vista no sabe SQL, el repository no sabe de botones y el service concentra las reglas. Así el código es más fácil de mantener y explicar.</p>
+<p><strong>¿Dónde está la lógica de negocio?</strong> En los <code>service/impl</code>. Por ejemplo, <code>ContratoServiceImp</code> valida fechas, superposición y estado del departamento.</p>
+<p><strong>¿Qué pasa si dos contratos se cruzan?</strong> El service busca un contrato vigente del mismo departamento con fechas superpuestas y lanza una <code>BusinessException</code> con un mensaje. La operación no se guarda.</p>
+<p><strong>¿Cómo evitas la inyección SQL?</strong> Todas las consultas usan <code>PreparedStatement</code> con parámetros <code>?</code>; no se concatenan los datos del usuario en el SQL.</p>
+<p><strong>¿Por qué usas BigDecimal para el dinero?</strong> Porque <code>double</code> puede producir errores de redondeo. <code>BigDecimal</code> es más preciso para montos.</p>
+<p><strong>¿Qué es FXML?</strong> Un archivo XML que describe la pantalla. JavaFX lo carga con <code>FXMLLoader</code> y lo conecta con un controlador mediante <code>fx:controller</code>.</p>
+<p><strong>¿Cómo se conecta un botón con el código?</strong> Con <code>onAction="#metodo"</code> en el FXML y un método anotado con <code>@FXML</code> en el controlador.</p>
+<p><strong>¿Qué es AppContext?</strong> Un contenedor de dependencias hecho a mano. Crea una sola vez los repositorios, servicios y controladores, y los entrega cuando se cargan los FXML.</p>
+<p><strong>¿Dónde usas herencia?</strong> <code>DepartamentoRepository</code> hereda de <code>AbstractJpaRepository</code>, que ya implementa las operaciones CRUD comunes. Cada repository solo define su tabla, su clave y cómo convertir una fila en objeto.</p>
+<p><strong>¿Dónde usas interfaces?</strong> En los servicios: <code>IDepartamentoService</code>, <code>IContratoService</code>, <code>IPagoService</code>, <code>IInquilinoService</code>, <code>IUsuarioService</code>. El controller depende de la interfaz, no de la implementación.</p>
+<p><strong>¿Cómo validas los datos?</strong> Con anotaciones de Jakarta Validation en los modelos (<code>@NotBlank</code>, <code>@Pattern</code>, <code>@NotNull</code>, <code>@DecimalMin</code>) y con <code>Validador.validar(...)</code> en los servicios. Las reglas que dependen de la base se validan en el service.</p>
+<p><strong>¿Qué pasa si elimino un departamento con contratos?</strong> El service lo impide y muestra un mensaje. Primero se deben eliminar o finalizar los contratos.</p>
+<p><strong>¿Cómo cambia el estado de un departamento?</strong> Al crear un contrato, <code>ContratoServiceImp</code> actualiza el departamento a <code>Ocupado</code>. Al finalizar o eliminar el contrato, si ya no quedan contratos vigentes, vuelve a <code>Disponible</code>.</p>
+<p><strong>¿Por qué la clave está en texto plano?</strong> Porque es un proyecto académico y así se puede mostrar el flujo con claridad. En producción se debe usar un hash con salt (por ejemplo, BCrypt).</p>
+<p><strong>¿Qué diferencia hay entre H2 y PostgreSQL?</strong> H2 es embebida y no requiere instalación; PostgreSQL es un servidor y se usa en entornos reales. El proyecto soporta ambos cambiando la configuración.</p>
+<p><strong>¿Qué mejorarías?</strong> Encriptar claves, agregar reportes en PDF, registrar auditoría de cambios, separar la configuración en variables de entorno y agregar pruebas automatizadas.</p>
+<p><strong>¿Qué fue lo más difícil?</strong> Se puede responder con honestidad: “Entender cómo se conectan el FXML, el controlador y el servicio, y cómo mantener actualizado el estado del departamento al crear o finalizar contratos”.</p>
+<p><strong>¿Qué aprendiste?</strong> A organizar un proyecto por capas, usar JavaFX con FXML, aplicar validaciones, trabajar con JDBC y modelar reglas de negocio.</p>
+<hr>
+<h2>10. Problemas comunes y soluciones</h2>
+<table><thead><tr>
+<th>Problema</th>
+<th>Solución</th>
+</tr></thead><tbody>
+<tr>
+<td>"JavaFX runtime components are missing"</td>
+<td>Ejecutar con el botón <strong>Run</strong> sobre <code>App</code> o <code>SysAlquileres</code> (ya funcionan), o con <code>mvn javafx:run</code>. No ejecutar <code>App</code> con <code>java -jar</code> directamente</td>
+</tr>
+<tr>
+<td>La base está bloqueada</td>
+<td>Cerrar la aplicación antes de borrar o mover <code>data/</code></td>
+</tr>
+<tr>
+<td>No aparece el usuario <code>admin</code></td>
+<td>Eliminar la carpeta <code>data/</code> y volver a iniciar</td>
+</tr>
+<tr>
+<td>No conecta con PostgreSQL</td>
+<td>Revisar <code>application.properties</code> y que el script se haya ejecutado</td>
+</tr>
+<tr>
+<td>La tabla no muestra los cambios</td>
+<td>Verificar que el controller llame a <code>cargar()</code> después de guardar</td>
+</tr>
+<tr>
+<td>Al guardar se actualiza la fila anterior</td>
+<td>Llamar a <code>limpiarFormulario()</code> para quitar la selección y el ID de edición</td>
+</tr>
+<tr>
+<td>Un campo obligatorio llega vacío</td>
+<td>Revisar la anotación de validación y el mensaje del service</td>
+</tr>
+<tr>
+<td>Las fechas no se guardan</td>
+<td>Verificar que el <code>DatePicker</code> tenga valor y que la fecha de fin sea posterior</td>
+</tr>
+<tr>
+<td>Error de codificación de acentos</td>
+<td>Guardar los archivos en UTF-8</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>11. Glosario</h2>
+<ul>
+<li><strong>CRUD:</strong> crear, leer, actualizar y eliminar.</li>
+<li><strong>Modelo:</strong> clase que representa una tabla o entidad.</li>
+<li><strong>Repositorio:</strong> clase que accede a la base de datos.</li>
+<li><strong>Servicio:</strong> clase con las reglas de negocio.</li>
+<li><strong>Controlador:</strong> clase que conecta la vista con el servicio.</li>
+<li><strong>Vista:</strong> archivo FXML que describe la pantalla.</li>
+<li><strong>Entidad:</strong> objeto con identidad propia, por ejemplo un departamento con su ID.</li>
+<li><strong>Clave primaria:</strong> campo que identifica de forma única una fila.</li>
+<li><strong>Clave foránea:</strong> campo que apunta a la clave primaria de otra tabla.</li>
+<li><strong>Transacción:</strong> conjunto de operaciones que se guardan todas o ninguna.</li>
+<li><strong>Validación:</strong> comprobación de que los datos cumplen las reglas.</li>
+<li><strong>Excepción de negocio:</strong> error esperado que se muestra al usuario.</li>
+<li><strong>Pool de conexiones:</strong> conjunto de conexiones reutilizables.</li>
+<li><strong>Seed:</strong> datos iniciales de ejemplo.</li>
+<li><strong>FXML:</strong> formato XML para describir interfaces JavaFX.</li>
+</ul>
+<hr>
+<h2>12. Checklist antes de exponer</h2>
+<ul>
+<li>[ ] El proyecto compila con <code>mvn.cmd -B -DskipTests package</code>.</li>
+<li>[ ] La aplicación abre con <code>mvn.cmd -B javafx:run</code>.</li>
+<li>[ ] El login funciona con <code>admin / admin123</code>.</li>
+<li>[ ] Hay datos de ejemplo en los cuatro módulos.</li>
+<li>[ ] Probaste crear, editar y eliminar en cada módulo.</li>
+<li>[ ] Probaste el error de contrato con fechas cruzadas.</li>
+<li>[ ] Probaste finalizar un contrato.</li>
+<li>[ ] Sabes explicar el flujo <code>FXML → Controller → Service → Repository</code>.</li>
+<li>[ ] Tienes esta guía y las capturas a mano.</li>
+<li>[ ] Practicaste la exposición al menos una vez en voz alta.</li>
+</ul>
+<hr>
+<p><strong>Consejo final:</strong> no intentes explicar cada línea de código. Explica qué hace el sistema, cómo se usa y cómo está organizado. Si el profesor pregunta por una clase, ubícala en la capa que le corresponde y cuenta su responsabilidad.</p>
+</main>
+</body>
+</html>

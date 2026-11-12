@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.alquileres.controller.ContratoController"
+      styleClass="modulo" spacing="10.0">
+
+    <HBox alignment="CENTER_LEFT" spacing="8.0">
+        <Label text="Gestión de Contratos" styleClass="titulo-modulo"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Buscar:" styleClass="campo-etiqueta"/>
+        <TextField fx:id="txtBuscar" promptText="Inquilino, DNI o depto." prefWidth="200.0"/>
+        <ComboBox fx:id="cbxFiltroEstado" prefWidth="140.0"/>
+    </HBox>
+
+    <HBox spacing="12.0" VBox.vgrow="ALWAYS">
+        <VBox prefWidth="350.0" spacing="8.0">
+            <Label fx:id="lblFormTitulo" text="Nuevo contrato" styleClass="titulo-form"/>
+
+            <GridPane hgap="8.0" vgap="7.0">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="75.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+
+                <Label text="Inquilino *" styleClass="campo-etiqueta" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="cbxInquilino" maxWidth="Infinity"
+                          GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Departamento *" styleClass="campo-etiqueta" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="cbxDepartamento" maxWidth="Infinity"
+                          GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Fecha inicio *" styleClass="campo-etiqueta" GridPane.rowIndex="2"/>
+                <DatePicker fx:id="dpInicio" maxWidth="Infinity"
+                            GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                <Label text="Fecha fin *" styleClass="campo-etiqueta" GridPane.rowIndex="3"/>
+                <DatePicker fx:id="dpFin" maxWidth="Infinity"
+                            GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Monto (S/) *" styleClass="campo-etiqueta" GridPane.rowIndex="4"/>
+                <TextField fx:id="txtMonto" promptText="Ej. 650.00" maxWidth="Infinity"
+                           GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <Label text="Personas *" styleClass="campo-etiqueta" GridPane.rowIndex="5"/>
+                <TextField fx:id="txtCantidad" promptText="Ej. 2" maxWidth="Infinity"
+                           GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            </GridPane>
+
+            <Label fx:id="lblInfoDepto" text="Selecciona un departamento para ver su precio."
+                   styleClass="texto-ayuda" wrapText="true"/>
+            <Label fx:id="lblMensaje" wrapText="true"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <HBox spacing="8.0">
+                <Button fx:id="btnGuardar" text="Guardar" onAction="#onGuardar" styleClass="boton-primario"
+                        maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                <Button text="Cancelar" onAction="#onCancelar" styleClass="boton-secundario"
+                        maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            </HBox>
+        </VBox>
+
+        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                <Button text="Nuevo" onAction="#onNuevo" styleClass="boton-secundario"/>
+                <Button text="Finalizar" onAction="#onFinalizar" styleClass="boton-exito"/>
+                <Button text="Eliminar" onAction="#onEliminar" styleClass="boton-peligro"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblConteo" text="0 registros" styleClass="texto-conteo"/>
+            </HBox>
+
+            <TableView fx:id="tblContratos" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="#" prefWidth="50.0"/>
+                    <TableColumn fx:id="colInquilino" text="Inquilino" prefWidth="170.0"/>
+                    <TableColumn fx:id="colDepartamento" text="Depto." prefWidth="65.0"/>
+                    <TableColumn fx:id="colInicio" text="Inicio" prefWidth="85.0"/>
+                    <TableColumn fx:id="colFin" text="Fin" prefWidth="85.0"/>
+                    <TableColumn fx:id="colMonto" text="Monto" prefWidth="100.0"/>
+                    <TableColumn fx:id="colEstado" text="Estado" prefWidth="85.0"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </HBox>
+</VBox>
