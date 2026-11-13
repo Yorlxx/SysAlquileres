@@ -41,7 +41,7 @@ public class DepartamentoController {
     @FXML private TextField txtPrecio;
     @FXML private Label lblMensaje;
 
-    private final ObservableList<Departamento> datos = FXCollections.observableArrayList();
+    private final ObservableList<Departamento> datos = FXCollections.observableArrayList();//e
     private FilteredList<Departamento> filtrados;
     private Long idEditando;
 

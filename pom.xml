@@ -63,6 +63,13 @@
             <version>5.0.0</version>
         </dependency>
 
+        <!-- ===== Impresión térmica 58 mm (Bluetooth / puerto serial) ===== -->
+        <dependency>
+            <groupId>com.fazecast</groupId>
+            <artifactId>jSerialComm</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
         <!-- ===== Utilidades ===== -->
         <dependency>
             <groupId>org.projectlombok</groupId>

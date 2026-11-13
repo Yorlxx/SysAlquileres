@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pe.edu.upeu.alquileres.components.Dialogos;
+import pe.edu.upeu.alquileres.components.NotaVentaDialog;
 import pe.edu.upeu.alquileres.enums.MetodoPago;
 import pe.edu.upeu.alquileres.exception.BusinessException;
 import pe.edu.upeu.alquileres.model.Contrato;
@@ -235,6 +236,18 @@ public class PagoController {
             e.printStackTrace();
             mensaje("No se pudo eliminar el pago.", true);
         }
+    }
+
+    @FXML
+    private void onImprimirNota() {
+        Pago seleccionado = tblPagos.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            mensaje("Selecciona un pago para emitir la nota de venta.", true);
+            return;
+        }
+        NotaVentaDialog.mostrar(
+                tblPagos.getScene() == null ? null : tblPagos.getScene().getWindow(),
+                seleccionado);
     }
 
     private void actualizarInfoContrato() {

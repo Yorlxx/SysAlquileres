@@ -81,6 +81,7 @@
         <VBox spacing="8.0" HBox.hgrow="ALWAYS">
             <HBox alignment="CENTER_LEFT" spacing="8.0">
                 <Button text="Nuevo" onAction="#onNuevo" styleClass="boton-secundario"/>
+                <Button text="Nota de venta" onAction="#onImprimirNota" styleClass="boton-secundario"/>
                 <Button text="Eliminar" onAction="#onEliminar" styleClass="boton-peligro"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label fx:id="lblConteo" text="0 registros" styleClass="texto-conteo"/>

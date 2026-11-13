@@ -15,8 +15,14 @@
 }
 
 /* ---------------- LOGIN ---------------- */
+/* Imagen de fondo del login: la ruta es relativa a este archivo CSS,
+   por eso subimos un nivel ("../") hasta resources y entramos en images. */
 .login-fondo {
-    -fx-background-color: #aecdf3;
+    -fx-background-color: #aecdf3; /* color de respaldo si la imagen no carga */
+    -fx-background-image: url("../images/fondo-login.jpg");
+    -fx-background-size: cover;       /* la imagen cubre toda la ventana */
+    -fx-background-position: center;  /* se centra */
+    -fx-background-repeat: no-repeat; /* no se repite */
 }
 
 .login-titulo {
@@ -119,6 +125,16 @@
 
 .boton-exito:hover {
     -fx-background-color: #2e7d32;
+}
+
+/* ---------------- TABLAS ---------------- */
+/* Fila de contrato con monto mensual mayor a 1000 (ver ContratoController). */
+.table-row-cell.contrato-monto-alto {
+    -fx-background-color: #bbdefb;
+}
+
+.table-row-cell.contrato-monto-alto .table-cell {
+    -fx-text-fill: #0d47a1;
 }
 
 /* ---------------- DIÁLOGOS ---------------- */
